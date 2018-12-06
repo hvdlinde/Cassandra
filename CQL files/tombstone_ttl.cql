@@ -27,8 +27,8 @@ CREATE TABLE sql2cql.tombstone (
     agreement blob,
     PRIMARY KEY (partyid,name)
 )
-WITH gc_grace_seconds = 0;
-
+WITH gc_grace_seconds = 0
+AND compaction = {'class' : 'SizeTieredCompactionStrategy', 'min_threshold': '2', 'max_threshold': '32', 'bucket_low': '0.5', 'bucket_high': '10' };
 
 
 # INSERT data 
