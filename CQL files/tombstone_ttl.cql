@@ -1,7 +1,7 @@
 # Title     SQL2CQL Training
 # Subject   Tombstone and TTL
-# Autor     João Villa-Lobos
-# Autor     Hans van der Linde
+# Author     João Villa-Lobos
+# Author     Hans van der Linde
 # Version   1
 
 # prepare
