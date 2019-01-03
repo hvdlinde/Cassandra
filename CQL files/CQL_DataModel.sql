@@ -1,23 +1,20 @@
-SQL:						CQL:
-	Clubs						clubs
-	Competitions				fixtures
-	Countries					squads
-	Fixtures					transfers
-	Squads						players
-	Transfers					transfers_buying
-	Players						transfers_selling
-	Seasons						transfers_per_season_buy
-								transfers_per_season_sell
-								players
-								players_byage
-								players_bycountry
-								players_ordered
-	
-	
-cqlsh: DS220 --> /usr/bin/cqlsh	
+-- Overview of which tables were created for SQL and their CQL counterparts
+-- SQL:						CQL:
+--	Clubs						clubs
+-- 	Competitions				fixtures
+-- 	Countries					squads
+-- 	Fixtures					transfers
+-- 	Squads						players
+-- 	Transfers					transfers_buying
+-- 	Players						transfers_selling
+--	Seasons						transfers_per_season_buy
+-- 								transfers_per_season_sell
+--								players
+--								players_byage
+--								players_bycountry
+--								players_ordered
 
-CREATE KEYSPACE jvl 
-
+	
 CREATE TABLE IF NOT EXISTS jvl.fixtures (
 	competition text,
 	roundnb int,
@@ -46,28 +43,6 @@ CREATE TABLE IF NOT EXISTS jvl.squads (
 );
 
 
-
---- ATTEMPTS ---
-CREATE TABLE IF NOT EXISTS jvl.transfers_buying (
-	playername text,
-	sellingteam text,
-	buyingteam text,
-	season text,
-	amount int,
-	PRIMARY KEY (buyingteam, sellingteam, amount, season)
-) WITH CLUSTERING ORDER BY (amount ASC, season DESC); -- sellingteam needs to be part of the ORDER BY
-
-
-CREATE TABLE IF NOT EXISTS jvl.transfers_buying (
-	playername text,
-	sellingteam text,
-	buyingteam text,
-	season text,
-	amount int,
-	PRIMARY KEY (buyingteam, sellingteam, amount, season)
-) WITH CLUSTERING ORDER BY (sellingteam ASC, amount ASC, season DESC); -- if by any chance there are 2 transfers between the same 2 clubs in the same season for the same amount...
---- ATTEMPTS ---
-
 CREATE TABLE IF NOT EXISTS jvl.transfers_buying (
 	playername text,
 	sellingteam text,
@@ -88,9 +63,10 @@ CREATE TABLE IF NOT EXISTS jvl.transfers_selling (
 ) WITH CLUSTERING ORDER BY (buyingteam ASC, amount ASC, season DESC, playername ASC);
 
 
--- First two tables allow me to check transfers between 2 clubs plus the amount exchanged
+-- First two tables allows the user to check transfers between 2 clubs plus the amount exchanged
 -- Table transfers_per_season_buy allows checking how much a buyingteam spent
 -- Table transfers_sellamount allows checking how much a buyingteam spent
+
 
 CREATE TABLE IF NOT EXISTS jvl.transfers_per_season_buy (
 	playername text,
@@ -159,18 +135,86 @@ CREATE TABLE IF NOT EXISTS jvl.players_bycountry (
 	PRIMARY KEY (team, country, firstname, lastname)
 );
 
--- check if it still makes sense
-CREATE TABLE jvl.players_ordered (
-	idPlayer int,
+
+-- Idempotent example with counters
+CREATE TABLE IF NOT EXISTS jvl.fixtures_counters (
+	competition text,
+	roundnb int,
+	game text,
 	country text,
-	position text,
-	firstname text,
-	lastname text,
-	fullname text,
+	season text,
+	score text,
+	count counter,
+	PRIMARY KEY (competition, roundnb, game, country, season, score)
+);
+
+
+-- Idempotent example with timestamp
+CREATE TABLE IF NOT EXISTS fixtures_timestamp (
+    competition text,
+    roundnb int,
+    game text,
+    country text,
+    season text,
+    score text,
+    inserted timestamp,
+    PRIMARY KEY (competition, roundnb, game)
+);
+
+
+-- Set, List and Map
+CREATE TABLE players_bysquad_history (
+    name text,
+	squads_set set<text>,
+	squads_list list<text>,
+	squads_map map<text, text>,
+	PRIMARY KEY (name)
+);
+
+
+-- UDT example
+CREATE TYPE personal_info (
 	age int,
 	sex text,
 	height int,
 	weight int,
-	dob date,
-	PRIMARY KEY (idPlayer, country)
-) WITH CLUSTERING ORDER BY (country ASC);
+	dob date
+);
+
+
+-- Frozen example
+CREATE TABLE IF NOT EXISTS jvl.players_v2 (
+	country text,
+	team text,
+	position text,
+	firstname text,
+	lastname text,
+	fullname text,
+	info FROZEN<personal_info>,
+	PRIMARY KEY (team, firstname, lastname)
+);
+
+
+-- Static example
+CREATE TABLE IF NOT EXISTS fixtures_static (
+    competition text,
+    roundnb int,
+    game text,
+    country text STATIC,
+    season text,
+    score text,
+    PRIMARY KEY (competition, roundnb, game)
+);
+
+
+-- TTL example
+CREATE TABLE IF NOT EXISTS fixtures_ttl (
+	competition text,
+	roundnb int,
+	game text,
+	country text,
+	season text,
+	score text,
+	PRIMARY KEY (competition, roundnb, game)
+) 
+WITH default_time_to_live = 3600;

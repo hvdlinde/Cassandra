@@ -1,3 +1,4 @@
+-- Sporting Clube de Portugal
 INSERT INTO transfers_per_season_sell (playername, sellingteam, buyingteam, season, amount)
 VALUES ('Romain Salin', 'Guingamp', 'SCP', '17/18', 0);
 INSERT INTO transfers_per_season_sell (playername, sellingteam, buyingteam, season, amount)
@@ -28,7 +29,6 @@ INSERT INTO transfers_per_season_sell (playername, sellingteam, buyingteam, seas
 VALUES ('Jefferson', 'SCP', 'SCB', '17/18', 0);
 
 
-
 -- Real Madrid
 INSERT INTO transfers_per_season_sell (playername, sellingteam, buyingteam, season, amount)
 VALUES ('Cristiano Ronaldo', 'Manchester United', 'Real Madrid', '09/10', 94000000); -- Cristiano Ronaldo
@@ -45,9 +45,3 @@ INSERT INTO transfers_per_season_sell (playername, sellingteam, buyingteam, seas
 VALUES ('Ousmane Dembélé', 'Borussia Dortmund', '13/14', 115000000); -- Ousmane Dembélé
 INSERT INTO transfers_per_season_sell (playername, sellingteam, buyingteam, season, amount)
 VALUES ('Philippe Coutinho', 'Liverpool', 'Barcelona', '12/13', 125000000); -- Philippe Coutinho
-
-
-cqlsh:jvl> SELECT sellingteam, amount
-           FROM transfers_per_season_sell 
-           WHERE sellingteam = 'SCP' 
-             AND season = '17/18';

@@ -321,9 +321,3 @@ INSERT INTO clubs (fullname, abbreviation, stadiumName, founded)
 VALUES ('Hellas Verona Football Club', 'HVFC', 'Marc Antonio Bentegodi', '1903-01-01');
 INSERT INTO clubs (fullname, abbreviation, stadiumName, founded)
 VALUES ('Benevento Calcio', 'BEN', 'Ciro Vigorito', '1929-01-01');
-
-Clubs total = 154
-
-SELECT * FROM clubs where abbreviation = 'SCP'; 
-SELECT * FROM clubs WHERE fullname = 'Sporting' ;
-InvalidRequest: code=2200 [Invalid query] message="No secondary indexes on the restricted columns support the provided operators: "

@@ -43,30 +43,45 @@ VALUES ('La Liga', 1, 'Málaga-Eibar', 'Spain', '17/18', '0-1'); -- Málaga 0 Ei
 
 -- England first round
 INSERT INTO fixtures (competition, roundNb, game, country, season, score)
-VALUES ('Premier League', 'Arsenal-Leicester City', 'England', '17-18', '4-3'); -- Arsenal 4 Leicester City 3
+VALUES ('Premier League', 1, 'Arsenal-Leicester City', 'England', '17/18', '4-3'); -- Arsenal 4 Leicester City 3
 INSERT INTO fixtures (competition, roundNb, game, country, season, score)
-VALUES ('Premier League', 'Watford-Liverpool', 'England', '17-18', '3-3'); -- Watford 3 Liverpool 3
+VALUES ('Premier League', 1, 'Watford-Liverpool', 'England', '17/18', '3-3'); -- Watford 3 Liverpool 3
 INSERT INTO fixtures (competition, roundNb, game, country, season, score)
-VALUES ('Premier League', 'Southampton-Swansea City', 'England', '17-18', '0-0'); -- Southampton 0 Swansea City 0
+VALUES ('Premier League', 1, 'Southampton-Swansea City', 'England', '17/18', '0-0'); -- Southampton 0 Swansea City 0
 INSERT INTO fixtures (competition, roundNb, game, country, season, score)
-VALUES ('Premier League', 'West Bromwich-AFC Bournemouth', 'England', '17-18', '1-0'); -- West Bromwich 1 AFC Bournemouth 0 
+VALUES ('Premier League', 1, 'West Bromwich-AFC Bournemouth', 'England', '17/18', '1-0'); -- West Bromwich 1 AFC Bournemouth 0 
 INSERT INTO fixtures (competition, roundNb, game, country, season, score)
-VALUES ('Premier League', 'Crystal Palace-Huddersfield Town', 'England', '17-18', '0-3'); -- Crystal Palace 0 Huddersfield Town 3
+VALUES ('Premier League', 1, 'Crystal Palace-Huddersfield Town', 'England', '17/18', '0-3'); -- Crystal Palace 0 Huddersfield Town 3
 INSERT INTO fixtures (competition, roundNb, game, country, season, score)
-VALUES ('Premier League', 'Everton-Stoke City', 'England', '17-18', '1-0'); -- Everton 1 Stoke City 0
+VALUES ('Premier League', 1, 'Everton-Stoke City', 'England', '17/18', '1-0'); -- Everton 1 Stoke City 0
 INSERT INTO fixtures (competition, roundNb, game, country, season, score)
-VALUES ('Premier League', 'Chelsea-Burnley', 'England', '17-18', '2-3'); -- Chelsea 2 Burnley 3
+VALUES ('Premier League', 1, 'Chelsea-Burnley', 'England', '17/18', '2-3'); -- Chelsea 2 Burnley 3
 INSERT INTO fixtures (competition, roundNb, game, country, season, score)
-VALUES ('Premier League', 'Brighton & Hove Albion-Manchester City', 'England', '17-18', '0-2'); -- Brighton & Hove Albion 0 Manchester City 2
+VALUES ('Premier League', 1, 'Brighton & Hove Albion-Manchester City', 'England', '17/18', '0-2'); -- Brighton & Hove Albion 0 Manchester City 2
 INSERT INTO fixtures (competition, roundNb, game, country, season, score)
-VALUES ('Premier League', 'Newcastle-Tottenham', 'England', '17-18', '0-2'); -- Newcastle 0 Tottenham 2
+VALUES ('Premier League', 1, 'Newcastle-Tottenham', 'England', '17/18', '0-2'); -- Newcastle 0 Tottenham 2
 INSERT INTO fixtures (competition, roundNb, game, country, season, score)
-VALUES ('Premier League', 'Manchester United-West Ham', 'England', '17-18', '4-0'); -- Manchester United 4 West Ham 0
+VALUES ('Premier League', 1, 'Manchester United-West Ham', 'England', '17/18', '4-0'); -- Manchester United 4 West Ham 0
 
 
-
-SELECT * FROM fixtures WHERE competition = 'Liga NOS';
-SELECT * FROM fixtures WHERE competition = 'Liga NOS' AND roundnb = 1;
-SELECT * FROM fixtures WHERE competition = 'Liga NOS' AND roundnb = 1 AND game = 'CDA-SCP';
-SELECT * FROM fixtures WHERE competition = 'Liga NOS' AND roundnb = 1 AND score = '0-2' ;
-InvalidRequest: code=2200 [Invalid query] message="No secondary indexes on the restricted columns support the provided operators: "
+-- England second round
+INSERT INTO fixtures (competition, roundNb, game, country, season, score)
+VALUES ('Premier League', 2, 'Swansea City-Manchester United', 'England', '17/18', '0-4'); -- Swansea City 0 Manchester United 4
+INSERT INTO fixtures (competition, roundNb, game, country, season, score)
+VALUES ('Premier League', 2, 'AFC Bournemouth-Watford', 'England', '17/18', '0-2'); -- AFC Bournemouth 0 Watford 2
+INSERT INTO fixtures (competition, roundNb, game, country, season, score)
+VALUES ('Premier League', 2, 'Southampton-West Ham', 'England', '17/18', '3-2'); -- Southampton 3 West Ham 2
+INSERT INTO fixtures (competition, roundNb, game, country, season, score)
+VALUES ('Premier League', 2, 'Burnley-West Bromwich', 'England', '17/18', '0-1'); -- Burnley 0 West Bromwich 1 
+INSERT INTO fixtures (competition, roundNb, game, country, season, score)
+VALUES ('Premier League', 2, 'Leicester City-Brighton & Hove Albion', 'England', '17/18', '2-0'); -- Leicester City 2 Brighton & Hove Albion 0
+INSERT INTO fixtures (competition, roundNb, game, country, season, score)
+VALUES ('Premier League', 2, 'Liverpool-Crystal Palace', 'England', '17/18', '1-0'); -- Liverpool 1 Crystal Palace 0
+INSERT INTO fixtures (competition, roundNb, game, country, season, score)
+VALUES ('Premier League', 2, 'Stoke City-Arsenal', 'England', '17/18', '1-0'); -- Stoke City 1 Arsenal 0
+INSERT INTO fixtures (competition, roundNb, game, country, season, score)
+VALUES ('Premier League', 2, 'Huddersfield Town-Newcastle', 'England', '17/18', '1-0'); -- Huddersfield Town 1 Newcastle 0
+INSERT INTO fixtures (competition, roundNb, game, country, season, score)
+VALUES ('Premier League', 2, 'Tottenham-Chelsea', 'England', '17/18', '1-2'); -- Tottenham 1  Chelsea 2
+INSERT INTO fixtures (competition, roundNb, game, country, season, score)
+VALUES ('Premier League', 2, 'Manchester City-Everton', 'England', '17/18', '1-1'); -- Manchester City 1 Everton 1

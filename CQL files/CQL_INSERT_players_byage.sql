@@ -1,3 +1,4 @@
+-- Sporting Clube de Portugal
 INSERT INTO players_byage (team, country, position, firstname, lastname, fullname, age, sex, height, weight, dob)
 VALUES ('SCP', 'Portugal', 'GK', 'Rui', 'Patrício', 'Rui Pedro dos Santos Patrício', 30, 'M', 190, 84, '1988-02-15');
 INSERT INTO players_byage (team, country, position, firstname, lastname, fullname, age, sex, height, weight, dob)
@@ -111,6 +112,7 @@ INSERT INTO players_byage (team, country, position, firstname, lastname, fullnam
 VALUES ('RMA', 'Spain', 'A', 'Lucas', 'Vázquez', 'Lucas Vázquez Iglesias', 26, 'M', 173, 63, '1991-07-01');
 INSERT INTO players_byage (team, country, position, firstname, lastname, fullname, age, sex, height, weight, dob)
 VALUES ('RMA', 'Spain', 'A', 'Borja', 'Mayoral', 'Borja Mayoral Moya', 21, 'M', 183, 75, '1997-04-05');
+
 
 -- Barcelona
 INSERT INTO players_byage (team, country, position, firstname, lastname, fullname, age, sex, height, weight, dob)

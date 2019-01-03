@@ -1,3 +1,4 @@
+-- Sporting Clube de Portugal
 INSERT INTO squads (team, playername, season)
 VALUES ('SCP', 'Rui Pedro dos Santos Patrício', '17/18');
 INSERT INTO squads (team, playername, season)
@@ -60,7 +61,6 @@ INSERT INTO squads (team, playername, season)
 VALUES ('SCP', 'Bas Dost', '17/18');
 INSERT INTO squads (team, playername, season)
 VALUES ('SCP', 'Fredy Henkyer Montero Muñoz', '17/18');
-
 
 
 -- Real Madrid

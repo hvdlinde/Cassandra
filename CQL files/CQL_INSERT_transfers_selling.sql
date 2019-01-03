@@ -1,3 +1,4 @@
+-- Sporting Clube de Portugal
 INSERT INTO transfers_selling (playername, sellingteam, buyingteam, season, amount)
 VALUES ('Romain Salin', 'Guingamp', 'SCP', '17/18', 0);
 INSERT INTO transfers_selling (playername, sellingteam, buyingteam, season, amount)

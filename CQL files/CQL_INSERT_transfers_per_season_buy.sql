@@ -1,3 +1,4 @@
+-- Sporting Clube de Portugal
 INSERT INTO transfers_per_season_buy (playername, sellingteam, buyingteam, season, amount)
 VALUES ('Romain Salin', 'Guingamp', 'SCP', '17/18', 0);
 INSERT INTO transfers_per_season_buy (playername, sellingteam, buyingteam, season, amount)
@@ -44,71 +45,3 @@ INSERT INTO transfers_per_season_buy (playername, sellingteam, buyingteam, seaso
 VALUES ('Ousmane Dembélé', 'Borussia Dortmund', '13/14', 115000000); -- Ousmane Dembélé
 INSERT INTO transfers_per_season_buy (playername, sellingteam, buyingteam, season, amount)
 VALUES ('Philippe Coutinho', 'Liverpool', 'Barcelona', '12/13', 125000000); -- Philippe Coutinho
-
-
-
-cqlsh:jvl> SELECT buyingteam, amount
-           FROM transfers_per_season_buy 
-           WHERE buyingteam = 'SCP' 
-             AND season = '17/18';
-			 
-cqlsh:jvl> SELECT * FROM transfers_per_season_buy 
-           WHERE buyingteam = 'SCP'
-             AND season = '17/18'
-             AND amount in (3000000, 3500000);
-InvalidRequest: code=2200 [Invalid query] message="Clustering column "amount" cannot be restricted by an IN relation"
-
-cqlsh:jvl> SELECT * FROM transfers_per_season_buy 
-           WHERE buyingteam = 'SCP' 
-             AND season in ('16/17', '17/18'); -- season is part of the partition key whilst amount is not
-			 
-cqlsh:jvl> SELECT * FROM transfers_per_season_buy
-           WHERE buyingteam = 'SCP'
-             AND season > '16/17';
-InvalidRequest: code=2200 [Invalid query] message="Only EQ and IN relation are supported on the partition key (unless you use the token() function)"
-
-cqlsh:jvl> SELECT * FROM transfers_per_season_buy
-           WHERE buyingteam = 'SCP'
-             AND season = '17/18'
-             AND amount > 8000000;
-
-cqlsh:jvl> SELECT * FROM transfers_per_season_buy 
-           WHERE buyingteam = 'SCP'
-             AND amount = 8500000;
-InvalidRequest: code=2200 [Invalid query] message="Partition key part season must be restricted since preceding part is"
-
--- ORDER BY
-cqlsh:jvl> SELECT * FROM transfers_per_season_buy
-           WHERE buyingteam = 'SCP'
-             AND season = '17/18'
-             AND amount > 100
-           ORDER BY playername ASC;
-InvalidRequest: code=2200 [Invalid query] message="Order by currently only support the ordering of columns following their declared order in the PRIMARY KEY"
-cqlsh:jvl> SELECT * FROM transfers_per_season_buy
-           WHERE buyingteam = 'SCP'
-             AND season = '17/18'
-             AND amount = 3500000
-           ORDER BY playername ASC;
-InvalidRequest: code=2200 [Invalid query] message="Order by currently only support the ordering of columns following their declared order in the PRIMARY KEY"
-cqlsh:jvl> SELECT * FROM transfers_per_season_buy
-           WHERE buyingteam = 'SCP'
-             AND season = '17/18'
-             AND amount = 3500000
-           ORDER BY buyingteam ASC, season DESC, amount DESC, playername ASC;
-InvalidRequest: code=2200 [Invalid query] message="Order by is currently only supported on the clustered columns of the PRIMARY KEY, got buyingteam"
-cqlsh:jvl> SELECT * FROM transfers_per_season_buy
-           WHERE buyingteam = 'SCP'
-             AND season = '17/18'
-             AND amount = 3500000
-           ORDER BY amount DESC, playername ASC;
-
-cqlsh:jvl> SELECT * FROM transfers_per_season_buy
-           WHERE buyingteam = 'SCP'
-             AND season = '17/18'
-             AND amount > 100
-           ORDER BY amount DESC, playername ASC;
-
-cqlsh:jvl> SELECT * FROM transfers_per_season_buy
-           WHERE buyingteam = 'SCP'
-             AND season = '17/18'
-           ORDER BY amount DESC, playername ASC;

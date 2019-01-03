@@ -1,3 +1,4 @@
+-- Sporting Clube de Portugal
 INSERT INTO players_bycountry (team, country, position, firstname, lastname, fullname, age, sex, height, weight, dob)
 VALUES ('SCP', 'Portugal', 'GK', 'Rui', 'Patrício', 'Rui Pedro dos Santos Patrício', 30, 'M', 190, 84, '1988-02-15');
 INSERT INTO players_bycountry (team, country, position, firstname, lastname, fullname, age, sex, height, weight, dob)
@@ -112,6 +113,7 @@ VALUES ('RMA', 'Spain', 'A', 'Lucas', 'Vázquez', 'Lucas Vázquez Iglesias', 26,
 INSERT INTO players_bycountry (team, country, position, firstname, lastname, fullname, age, sex, height, weight, dob)
 VALUES ('RMA', 'Spain', 'A', 'Borja', 'Mayoral', 'Borja Mayoral Moya', 21, 'M', 183, 75, '1997-04-05');
 
+
 -- Barcelona
 INSERT INTO players_bycountry (team, country, position, firstname, lastname, fullname, age, sex, height, weight, dob)
 VALUES ('FCB', 'Germany', 'GK', '', 'ter Stegen', 'Marc-André ter Stegen', 26, 'M', 187, 80, '1992-04-30');
@@ -159,20 +161,3 @@ INSERT INTO players_bycountry (team, country, position, firstname, lastname, ful
 VALUES ('FCB', 'Argentina', 'A', 'Lionel', 'Messi', 'Lionel Andrés Messi Cuccittini', 31, 'M', 170, 64, '1987-06-24');
 INSERT INTO players_bycountry (team, country, position, firstname, lastname, fullname, age, sex, height, weight, dob)
 VALUES ('FCB', 'Spain', 'A', 'Paco', 'Alcácer', 'Francisco Alcácer García', 24, 'M', 175, 69, '1993-08-30');
-
-cqlsh:jvl> SELECT * FROM players_bycountry
-           WHERE team = 'SCP'
-             AND country = 'Brazil'
-           ORDER BY age DESC;
-InvalidRequest: code=2200 [Invalid query] message="Order by is currently only supported on the clustered columns of the PRIMARY KEY, got age"
-
-cqlsh:jvl> SELECT * FROM players_bycountry 
-           WHERE team = 'SCP'
-             AND country in ('Italy', 'Brazil');
-InvalidRequest: code=2200 [Invalid query] message="Clustering column "country" cannot be restricted by an IN relation"  -- doesnt work on VM, works in SBX
-
-
-cqlsh:jvl> SELECT * FROM players_bycountry 
-           WHERE team = 'SCP'
-           ORDER BY country;
-
